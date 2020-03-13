@@ -23,41 +23,53 @@ using namespace std;
 #define clr(a, b)memset(a,b,sizeof(a))
 #define all(v)((v).begin()),((v).end())
 #define write(v) freopen(v,"w",stdout)
-const int N = 1e5 + 74, OO = 0x3f3f3f3f;
+const int N = 5e3 + 74, OO = 0x3f3f3f3f;
 
-vector<int> adj[N];
-bool vis[N];
-long double ret = 0.0;
+int n, m, T;
+vector<pair<int, int>> adj[N];
+int mem[N][N];
+int dp(int node, int depth) {
+    if (!depth || node == n && depth != 1)
+        return OO;
+    if (node == n)
+        return 0;
+    int &ret = mem[node][depth];
+    if (~ret)
+        return ret;
+    ret = OO;
+    for (auto child: adj[node])
+        ret = min(ret, dp(child.first, depth - 1) + child.second);
+    return mem[node][depth] = ret;
+}
 
-void dfs(int u = 1, int d = 0, long double prop = 1.0) {
-    vis[u] = true;
-    int sz = (int)adj[u].size() - (u != 1);
-    if (sz == 0)
-        ret += (long double) prop * d;
-    else {
-        for (int v : adj[u]) {
-            if (!vis[v])
-                dfs(v, d + 1, prop * (1.0 / sz));
+void build(int node, int depth) {
+    for (auto child: adj[node]) {
+        if (dp(child.first, depth - 1) + child.second == mem[node][depth]) {
+            cout << node << ' ';
+            build(child.first, depth - 1);
+            break;
         }
     }
 }
 
+
 class CJourney {
 public:
     void solve(istream &cin, ostream &cout) {
-        int n;
-        cin >> n;
-        for (int i = 0; i < n - 1; i++) {
-            int u, v;
-            cin >> u >> v;
-            adj[u].push_back(v);
-            adj[v].push_back(u);
+        cin >> n >> m >> T;
+        for (int i = 0; i < m; ++i) {
+            int u, v, t;
+            cin >> u >> v >> t;
+            adj[u].push_back({v, t});
         }
-        dfs();
-        cout << fixed << setprecision(12) << ret << el;
-        ret = 0.0;
-        for (int i = 1; i <= n; i++)
-            adj[i].clear();
-        clr(vis, false);
+        clr(mem, -1);
+        for (int depth = m + 1; depth > 0; --depth) {
+            if (dp(1, depth) <= T) {
+                cout << depth << el;
+                build(1, depth);
+                cout << n << el;
+                break;
+            }
+        }
     }
 };

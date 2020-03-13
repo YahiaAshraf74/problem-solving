@@ -28,9 +28,14 @@ template<typename T> using heap = priority_queue<T, vector<T>, less<T>>;
 using ordered_set =  tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update>;
 const long long N = 2e5 + 74, OO = 0x3f3f3f3f, MOD = (long long) 1e9 + 7;
 
-class ANonZero {
+class Zeroes {
 public:
 	void static solve(istream& cin, ostream& cout) {
-
+        ll n ,m;
+        while(cin >> n>>m){
+            if(!n||!m)
+                break;
+            cout << m / 5 - n / 5 + 1 << el;
+        }
 	}
 };
