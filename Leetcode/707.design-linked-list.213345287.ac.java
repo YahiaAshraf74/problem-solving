@@ -28,7 +28,7 @@ class MyLinkedList {
         return temp.val;
     }
     
-    /** Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. */
+    /** Add deg node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. */
     public void addAtHead(int val) {
         if (size == 0) {
             head = tail = new Node (val , null); 
@@ -39,7 +39,7 @@ class MyLinkedList {
         ++size ; 
     }
     
-    /** Append a node of value val to the last element of the linked list. */
+    /** Append deg node of value val to the last element of the linked list. */
     public void addAtTail(int val) {
         if (size == 0){
             head = tail = new Node (val,null) ; 
@@ -51,7 +51,7 @@ class MyLinkedList {
         ++size;
     }
     
-    /** Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. */
+    /** Add deg node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. */
     public void addAtIndex(int index, int val) {
         if (index < 0 || index > size) return  ; 
         else if (index == 0) addAtHead(val) ;
