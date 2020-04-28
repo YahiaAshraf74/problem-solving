@@ -10,17 +10,17 @@ class MyLinkedList {
     }
     Node head = null; 
     Node tail = null ; 
-    int size = 0 ; 
+    int sz = 0 ;
     /** Initialize your data structure here. */
     public MyLinkedList() {
          head = null; 
          tail = null ; 
-         size = 0 ;
+         sz = 0 ;
     }
     
     /** Get the value of the index-th node in the linked list. If the index is invalid, return -1. */
     public int get(int index) {
-        if (index < 0 || index >= size) return -1 ; 
+        if (index < 0 || index >= sz) return -1 ;
         Node temp = head; 
         for(int i = 0 ; i < index ; i++){
             temp = temp.next ; 
@@ -30,32 +30,32 @@ class MyLinkedList {
     
     /** Add deg node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. */
     public void addAtHead(int val) {
-        if (size == 0) {
+        if (sz == 0) {
             head = tail = new Node (val , null); 
         }else{
             Node temp = head ;
             head = new Node (val , temp);
         }
-        ++size ; 
+        ++sz ;
     }
     
     /** Append deg node of value val to the last element of the linked list. */
     public void addAtTail(int val) {
-        if (size == 0){
+        if (sz == 0){
             head = tail = new Node (val,null) ; 
         }else {
             Node temp = new Node (val , null) ;
             tail.next = temp ; 
             tail = temp ; 
         }
-        ++size;
+        ++sz;
     }
     
     /** Add deg node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. */
     public void addAtIndex(int index, int val) {
-        if (index < 0 || index > size) return  ; 
+        if (index < 0 || index > sz) return  ;
         else if (index == 0) addAtHead(val) ;
-        else if(index == size) addAtTail(val) ;
+        else if(index == sz) addAtTail(val) ;
         else{
             Node temp = head ; 
             for (int i = 0 ; i < index -1; i++){
@@ -63,38 +63,38 @@ class MyLinkedList {
             }
             Node temp2 = new Node(val , temp.next) ;
             temp.next = temp2 ;
-            ++size; 
+            ++sz;
         }
         return ; 
     }
     
     /** Delete the index-th node in the linked list, if the index is valid. */
     public void deleteAtIndex(int idx){
-        if (idx < 0 || idx >= size)
+        if (idx < 0 || idx >= sz)
             return ;
         if (idx == 0) {
-            if (size == 1) {
-                size = 0;
+            if (sz == 1) {
+                sz = 0;
                 head = null;
                 tail = null;
                 return;
             }
             head = head.next ;
-            --size ;
+            --sz ;
             return ;
         }
         Node temp = head ;
         for (int i = 0 ; i < idx-1 ; i++){
             temp = temp.next ;
         }
-        if (idx == size -1){
+        if (idx == sz -1){
                 tail = temp;
                 tail.next = null;
-                size--;
+                sz--;
                 return;
         }
         temp.next = temp.next.next ;
-        --size;
+        --sz;
     }
 }
 

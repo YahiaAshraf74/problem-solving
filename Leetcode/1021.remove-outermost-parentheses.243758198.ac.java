@@ -6,7 +6,7 @@ class Solution {
             for(int i = 0 ;i < nS.length() ; i++){
                 if(st.empty()){
                     st.push(nS.charAt(i)) ;
-                }else if(st.size() == 1 && nS.charAt(i) == ')' && st.peek() == '('){
+                }else if(st.sz() == 1 && nS.charAt(i) == ')' && st.peek() == '('){
                     st.pop() ;
                 }else {
                     if(nS.charAt(i) == '(')
