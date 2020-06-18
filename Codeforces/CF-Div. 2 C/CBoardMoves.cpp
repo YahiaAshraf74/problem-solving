@@ -15,6 +15,7 @@
 #include <string.h>
 #include <fstream>
 #include <iomanip>
+#include <numeric>
 #include <assert.h>
 using namespace std;
 #define el  '\n'
@@ -23,7 +24,7 @@ using namespace std;
 #define sz(a) (int)(a).size()
 const long long N = (int)2e5 + 74, OO = 0x3f3f3f3f, MOD = (int) 1e9 + 7;
 
-class Tribles {
+class CBoardMoves {
 public:
     void init(){
 
@@ -31,6 +32,21 @@ public:
 
 	void solve(istream& cin, ostream& cout) {
         init();
-
+        int T, testCases = 1;
+        cin >> T;
+        while (T--) {
+            unsigned ll n;
+            cin >> n;
+            if(n == 1){
+                cout << 0 << el;
+                continue;
+            }
+            unsigned ll ans = 8 , cur = 16;
+            for(int steps = 2;steps<=n/2;steps++){
+                ans += steps * cur;
+                cur+=8;
+            }
+            cout << ans << el;
+        }
 	}
 };

@@ -23,9 +23,10 @@ using namespace std;
 #define clr(a,b)memset(a,b,sizeof(a))
 #define sz(a) (int)(a).size()
 const long long N = (int)2e5 + 74, OO = 0x3f3f3f3f, MOD = (int) 1e9 + 7;
+template<typename T> using min_heap = priority_queue<T, vector<T>, greater<T>>;
+template<typename T> using max_heap = priority_queue<T, vector<T>, less<T>>;
 
-
-class DQueue {
+class AMostUnstableArray {
 public:
     void init(){
 
@@ -33,22 +34,18 @@ public:
 
 	void solve(istream& cin, ostream& cout) {
         init();
-        int n;
-        cin >> n;
-        vector<pair<int,int>> v(n);
-        for(int i  =0;i<n;i++){
-            cin >> v[i].first;
-            v[i].second = i;
+        int t;
+        cin >> t;
+        while(t--){
+            int n,m;
+            cin >> n >> m;
+            if(n == 1){
+                cout << 0 << el;
+            }else if(n == 2){
+                cout << m << el;
+            }else{
+                cout << m*2 << el;
+            }
         }
-        sort(v.begin(), v.end() );
-        vector<int> ans(n);
-        int mx = 0;
-        for(int i = 0;i<n;i++){
-            mx = max(mx,v[i].second);
-            ans[v[i].second] = mx-v[i].second-1;
-        }
-        for(int i : ans)
-            cout << i << ' ';
-        cout << el;
 	}
 };

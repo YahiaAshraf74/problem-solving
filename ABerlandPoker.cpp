@@ -15,6 +15,7 @@
 #include <string.h>
 #include <fstream>
 #include <iomanip>
+#include <numeric>
 #include <assert.h>
 using namespace std;
 #define el  '\n'
@@ -23,14 +24,22 @@ using namespace std;
 #define sz(a) (int)(a).size()
 const long long N = (int)2e5 + 74, OO = 0x3f3f3f3f, MOD = (int) 1e9 + 7;
 
-class France98 {
+class ABerlandPoker {
 public:
-    void init(){
-
-    }
-
 	void solve(istream& cin, ostream& cout) {
-        init();
-
+        int T, testCases = 1;
+        cin >> T;
+        while (T--) {
+            int n , j , k;
+            cin >> n >> j >> k;
+            int cards = n / k;
+            if(cards >= j){
+                cout << j << el;
+            }else{
+                int remJ = j - cards;
+                int ans = cards - ceil((double)remJ / (k-1));
+                cout <<  max(ans,0) << el;
+            }
+        }
 	}
 };
